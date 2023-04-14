@@ -1,0 +1,62 @@
+/*!
+ * Copyright (c) 2023. kinkycraft.com
+ * GNU General Public License v3.0 or later [GPL-3.0-or-later]
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+ */
+/*      == UserScript ==
+ ~  @appname		CuLipSum
+ ~  @name			text_edit style
+ ~  @description	This styles the text_edit.html page
+ ~  @include		/text/text_edit.html
+ ~  @version		1.0.00
+ ~      == /UserScript == */
+
+@import "base";
+
+.button {
+  padding: 10px 24px;
+  width: 200px;
+  background-color: darkolivegreen;
+  border: none;
+  color: white;
+
+  &:hover {
+    background-color: lightcoral;
+  }
+}
+#inputForm {
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+
+  textarea, input {
+    background-color: #323232;
+    color: white;
+    outline: none;
+    border: 0;
+  }
+  textarea {
+    padding: 5px 20px 20px 20px;
+  }
+  input {
+    padding: 5px;
+  }
+}
+#inputTitle {
+  color: gray;
+}
+#inputSubmit {
+  margin-top: 20px;
+}
+#inputSubmit {
+  margin-top: 20px;
+}
+.alertText {
+  font-weight: $fbold;
+  color: firebrick;
+}
+.radiogroup {
+  width: 100% !important;
+}

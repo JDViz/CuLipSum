@@ -1,0 +1,100 @@
+<!--
+  ~ Copyright (c) 2023. kinkycraft.com
+  ~ GNU General Public License v3.0 or later [GPL-3.0-or-later]
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+  -->
+<!--      == UserScript ==
+~  @appname         CuLipSum
+~  @name			text_output
+~  @description	    This is the outputs view of the content
+~  @include		    /text/text_output.js || /styles/text_output.css || /styles/normalize.css
+~  @version		    1.0.00
+~      == /UserScript == -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CuLipSum&trade; GENERATOR</title>
+    <link rel="stylesheet" href="../styles/normalize.css"/>
+    <link rel="stylesheet" href="../styles/text_output.css"/>
+</head>
+<body>
+<div id="mainContainer">
+    <div id="headerBox">
+        <img src="/imgs/culipsum_logo_for_dark.svg" class="headerLogo">
+    </div>
+    <div id="linkBlock">
+        <div class="linkBox">
+                <a href="/text/text_output.html"><button id="btn_generate_page" class="button button1">Text Generator</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_input.html"><button id="btn_input_page" class="button button2">Text Input</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_edit.html"><button id="btn_edit_page" class="button button5">Edit Content</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_delete.html"><button id="btn_delete_page" class="button button4">Delete Content</button></a>
+        </div>
+    </div>
+    <div id="selectorContainer" class="container">
+        <div id="selectorContent" class="selectorBoxes">
+            <div id="radioContentBox" class="radiogroup">
+                <div><h3>Choose Content</h3></div>
+            </div>
+            <div id="selectorFormatBox"  class="radiogroup">
+                <div><h3>Choose Format <span id="selectorMessage"></span></h3></div>
+                <div class="wrapper">
+                    <input class="state" type="radio" name="radioFormat" id="format_normal" value="format_normal">
+                    <label class="label" for="format_normal">
+                        <div class="indicator"></div>
+                        <span class="text">Normal</span>
+                    </label>
+                </div>
+                <div class="wrapper">
+                    <input class="state" type="radio" name="radioFormat" id="format_html" value="format_html">
+                    <label class="label" for="format_html">
+                        <div class="indicator"></div>
+                        <span class="text">HTML</span>
+                    </label>
+                </div>
+                <div class="wrapper">
+                    <input class="state" type="radio" name="radioFormat" id="format_markdown" value="format_markdown">
+                    <label class="label" for="format_markdown">
+                        <div class="indicator"></div>
+                        <span class="text">Markdown</span>
+                    </label>
+                </div>
+                <div class="wrapper">
+                    <input class="state" type="radio" name="radioFormat" id="format_plain" value="format_plain">
+                    <label class="label" for="format_plain">
+                        <div class="indicator"></div>
+                        <span class="text">Plain</span>
+                    </label>
+                </div>
+                <div class="wrapper">
+                    <input class="state" type="radio" name="radioFormat" id="format_block" value="format_block">
+                    <label class="label" for="format_block">
+                        <div class="indicator"></div>
+                        <span class="text">Block</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contentTitleBox">
+        <h2 id="contentTitle">Title</h2>
+        <h3 id="subTitle">This is the sub title placeholder.</h3>
+    </div>
+    <div id="boxOutput" class="box_output">
+
+    </div>
+    <p id="lineCount"></p>
+    <div id="footerbox">
+        <div id="copyright">&copy; 2023 <a href="http://kinkycraft.com/">KinkyCraft.com</a> - All rights reserved.</div>
+    </div>
+</div>
+<script src="text_output.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other folders
+.settings/
+.idea/
+personal_notes/
+
+# Other Files
+prepros.config
+.DS_Store
+config.codekit3
+
+
+# Executables
+#*.swf
+

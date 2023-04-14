@@ -1,0 +1,88 @@
+/*!
+ * Copyright (c) 2023. kinkycraft.com
+ * GNU General Public License v3.0 or later [GPL-3.0-or-later]
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+ */
+/*      == UserScript ==
+ ~  @appname		CuLipSum
+ ~  @name			text_input style
+ ~  @description	This styles the text_input.html page
+ ~  @include		/text/text_input.html
+ ~  @version		0.0.01
+ ~      == /UserScript == */
+
+@import "base";
+
+#box_UploadFile, #box_entertext {
+  padding: 10px 0;
+}
+.btn-fileUpload {
+  position: relative;
+  overflow: hidden;
+  border: $brdr_main;
+  padding: 10px 24px;
+  background-color: darkolivegreen;
+  color: white;
+
+  input[type=file] {
+    //border: $brdr_ident;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
+  }
+
+  &:hover {
+    background-color: lightcoral;
+  }
+}
+
+.button {
+  padding: 10px 24px;
+  width: 200px;
+  background-color: darkolivegreen;
+  border: none;
+  color: white;
+
+  &:hover {
+    background-color: lightcoral;
+  }
+}
+#inputForm {
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+
+  textarea, input {
+    background-color: #323232;
+    color: white;
+    outline: none;
+    border: 0;
+  }
+  textarea {
+    padding: 5px 20px 20px 20px;
+  }
+  input {
+    padding: 5px;
+  }
+}
+//#inputSubmit {
+//  margin-top: 20px;
+//}
+.alertText {
+  font-weight: $fbold;
+  color: firebrick;
+}
+#sentContentBox {
+  display: none;
+}

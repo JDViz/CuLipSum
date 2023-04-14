@@ -1,0 +1,72 @@
+<!--
+  ~ Copyright (c) 2023. kinkycraft.com
+  ~ GNU General Public License v3.0 or later [GPL-3.0-or-later]
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+  -->
+<!--        == UserScript ==
+~  @appname		    CuLipSum
+~  @name			Extension Options
+~  @description	    Landing popup for the addon. Allows user to choose what they want to do in the app.
+~  @include		    options.js
+~  @version		    0.0.01
+           == /UserScript == -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CuLipSum Options</title>
+    <link rel="stylesheet" href="../styles/normalize.css"/>
+    <link rel="stylesheet" href="../styles/options.css"/>
+</head>
+<body>
+<div id="headerBox">
+    <h1><span>CuLipSum&trade; Options</span></h1>
+</div>
+<div id="introText">
+    <p>While I love the generator over at Fillerama, I wanted to be able to upload my own text. Therefore I built this
+        Firefox Extension to let me. There's demo material, but you have a place to upload your own stuff.</p>
+</div>
+
+<div class="container">
+    <div class="item item1">
+        <p>
+            <button id="btn_generate_page" class="button button1">Text Generator</button>
+        </p>
+    </div>
+    <div class="item item2">
+        <p>
+            <button id="btn_input_page" class="button button2">Text Input</button>
+        </p>
+    </div>
+    <div class="item item3">
+        <p>
+            <button id="btn_delete_page" class="button button4">Delete Content</button>
+        </p>
+    </div>
+    <div class="item item4">
+        <p>
+            <button id="btn_edit_page" class="button button5">Edit Content</button>
+        </p>
+    </div>
+<!--    <div class="item item5">-->
+<!--        <p>-->
+<!--            <button id="btn_reload_extension" class="button button3">Reload Extension</button>-->
+<!--        </p>-->
+<!--    </div>-->
+<!--    <div class="item item6">-->
+<!--        <p>-->
+<!--            <button id="btn_get_tab" class="button button6">Get Current Tab</button>-->
+<!--        </p>-->
+<!--    </div>-->
+</div>
+<!-- Link to Output -->
+<!-- Link to Input -->
+<div id="footerbox">
+    <div id="copyright">&copy; 2023 <a href="http://kinkycraft.com/">KinkyCraft.com</a> - All rights reserved.</div>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+/*!
+ * Copyright (c) 2023. kinkycraft.com
+ * GNU General Public License v3.0 or later [GPL-3.0-or-later]
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+ */
+/*      == UserScript ==
+ ~  @appname		CuLipSum
+ ~  @name			text_delete style
+ ~  @description	This styles the text_delete.html page
+ ~  @include		/text/text_delete.html
+ ~  @version		1.0.00
+ ~      == /UserScript == */
+/*!
+ * Copyright (c) 2023. kinkycraft.com
+ * GNU General Public License v3.0 or later [GPL-3.0-or-later]
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+ */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: "Raleway", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(16, 16, 20);
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 100;
+  font-size: 1em;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+h2, h3, h4, h5, h6 {
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 20px;
+  line-height: 1.75em;
+}
+
+ul, ol {
+  padding-left: 40px;
+  margin-bottom: 30px;
+}
+ul li, ol li {
+  margin-bottom: 1em;
+}
+
+a {
+  color: rgb(0, 128, 128);
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+#mainContainer {
+  margin: auto;
+  padding: 0;
+  width: 80%;
+}
+
+#headerBox, #footerbox {
+  width: 100%;
+  text-align: center;
+}
+
+#headerBox {
+  padding-bottom: 20px;
+}
+#headerBox .headerLogo {
+  height: 100px;
+  width: auto;
+}
+
+#footerbox {
+  padding-top: 20px;
+}
+#footerbox #copyright {
+  font-size: 0.75em;
+}
+
+#selectorContainer {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  height: auto;
+  padding: 10px;
+}
+#selectorContainer #selectorContent {
+  height: auto;
+  align-content: center;
+}
+#selectorContainer .selectorBoxes {
+  padding: 0 0 10px 0;
+}
+#selectorContainer .selectorBoxes .radiogroup {
+  margin: auto;
+  min-height: 185px;
+  height: 100%;
+  width: 49%;
+  display: inline-block;
+  padding: 20px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25) inset, -4px -4px 4px 0 rgba(255, 255, 255, 0.09) inset;
+}
+
+.wrapper {
+  margin: 8px 0;
+  float: left;
+  margin-left: 30px;
+}
+
+.state {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.00001;
+  pointer-events: none;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.text {
+  margin-left: 16px;
+  opacity: 0.6;
+  transition: opacity 0.2s linear, transform 0.2s ease-out;
+}
+
+.indicator {
+  position: relative;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  box-shadow: -8px -4px 8px 0px rgba(255, 255, 255, 0.05), 8px 4px 12px 0px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.indicator::before,
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+}
+
+.indicator::before {
+  box-shadow: -4px -2px 4px 0px rgba(255, 0, 0, 0.09), 4px 2px 8px 0px rgba(255, 0, 0, 0.5);
+}
+
+.indicator::after {
+  background-color: rgba(0, 0, 0, 0.09);
+  box-shadow: -4px -2px 4px 0px rgb(255, 212, 84), 4px 2px 8px 0px rgb(255, 212, 84);
+  transform: scale3d(1, 1, 1);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.state:checked ~ .label .indicator::after {
+  transform: scale3d(0.975, 0.975, 1) translate3d(0, 10%, 0);
+  opacity: 0;
+}
+
+.state:focus ~ .label .text {
+  transform: translate3d(8px, 0, 0);
+  opacity: 1;
+}
+
+.label:hover .text {
+  opacity: 1;
+}
+
+#saveBlock {
+  align-content: center;
+  height: 50px;
+}
+#saveBlock div {
+  display: inline-block;
+}
+#saveBlock #saved {
+  padding: 5px;
+  width: 200px;
+  text-align: center;
+  margin: 0;
+  color: lightgreen;
+}
+
+#linkBlock {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+#linkBlock .linkBox {
+  display: inline-block;
+}
+#linkBlock .linkBox .button {
+  padding: 10px 24px;
+  width: 200px;
+  background-color: darkolivegreen;
+  border: none;
+  color: white;
+}
+#linkBlock .linkBox .button:hover {
+  background-color: lightcoral;
+}
+
+#contentTitle {
+  font-size: 6em;
+}
+
+#boxOfDeletes {
+  text-align: center;
+}
+
+.deleteItems {
+  margin: auto;
+  border: 1px solid lightcoral;
+  padding: 20px;
+  width: 600px;
+}
+
+.itemName {
+  display: inline-block;
+}
+
+.delete_button {
+  display: inline-block;
+  float: right;
+}
+
+button {
+  padding: 10px 24px;
+  width: 200px;
+  background-color: firebrick;
+  border: none;
+  color: white;
+}
+button:hover {
+  background-color: lightcoral;
+}

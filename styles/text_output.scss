@@ -1,0 +1,48 @@
+/*!
+ * Copyright (c) 2023. kinkycraft.com
+ * GNU General Public License v3.0 or later [GPL-3.0-or-later]
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+ */
+/*      == UserScript ==
+ ~  @appname		CuLipSum
+ ~  @name			text_output style
+ ~  @description	This styles the text_output.html page
+ ~  @include		/text/text_output.html
+ ~  @version		0.0.01
+ ~      == /UserScript == */
+
+@import "base";
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //background-color: #ecf0f3;
+  //font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+#headerBox, #selectorContainer, #boxOutput, #footerbox {
+  //border: $brdr_ident;
+  width: 100%;
+  margin: auto;
+  padding: 10px 0;
+}
+
+#boxOutput {
+  background-color: rgba(255, 255, 255, 0.09);
+  padding: 20px;
+}
+.emphasis {
+  font-size: 1.25em;
+  color: pink;
+}
+.boldie {
+  font-weight: $fbold;
+}
+#subTitle {
+  margin-left: 100px;
+}
+
+

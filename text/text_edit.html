@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2023. kinkycraft.com
+  ~ GNU General Public License v3.0 or later [GPL-3.0-or-later]
+  ~ This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See <https://www.gnu.org/licenses/> <https://spdx.org/licenses/GPL-3.0-or-later.html>
+  -->
+<!--      == UserScript ==
+~  @appname         CuLipSum
+~  @name			text_edit
+~  @description	    This is the page where users can edit their content.
+~  @include		    /text/text_edit.js || /styles/text_edit.css || /styles/normalize.css
+~  @version		    1.0.00
+~      == /UserScript == -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Edit - CuLipSum&trade;</title>
+    <link rel="stylesheet" href="../styles/normalize.css"/>
+    <link rel="stylesheet" href="../styles/text_edit.css"/>
+</head>
+<body>
+<div id="mainContainer">
+    <div id="headerBox">
+        <img src="/imgs/culipsum_logo_for_dark.svg" class="headerLogo">
+    </div>
+    <div id="linkBlock">
+        <div class="linkBox">
+            <a href="/text/text_output.html"><button id="btn_generate_page" class="button button1">Text Generator</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_input.html"><button id="btn_input_page" class="button button2">Text Input</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_edit.html"><button id="btn_edit_page" class="button button5">Edit Content</button></a>
+        </div>
+        <div class="linkBox">
+            <a href="/text/text_delete.html"><button id="btn_delete_page" class="button button4">Delete Content</button></a>
+        </div>
+    </div>
+    <div id="contentTitleBox">
+        <h1 id="contentTitle">Content Edit</h1>
+    </div>
+    <div id="selectorContainer" class="container">
+        <div id="selectorContent" class="selectorBoxes">
+            <div id="radioContentBox" class="radiogroup">
+                <div><h3>Select Content to Display Below.</h3></div>
+            </div>
+        </div>
+    </div>
+    <div id="box_edittext">
+        <h3>Or you can paste your content into the fields below.</h3>
+        <form id="inputForm">
+            <p>
+                <label for="inputTitle">Title:</label><br>
+                <span id="titleAlert" class="alertText"></span>
+                <input type="text" id="inputTitle" name="inputTitle" size="100" readonly><br><br>
+                <label for="inputTagline">Tag Line:</label><br>
+                <input type="text" id="inputTagline" name="inputTagline" size="100"><br>Can be a motto or author name.<br>
+            </p>
+            <p>Enter one sentence per line.</p>
+            <textarea id="freeformInput" name="freeformInput" rows="10" cols="100">... or enter text here...</textarea>
+            <p id="contentAlert" class="alertText"></p>
+        </form>
+        <div id="saveBlock">
+            <div><button id="inputSubmit" class="button">Send It!</button></div><div><h2 id="saved">SAVED!</h2></div>
+        </div>
+    </div>
+    <div id="footerbox">
+        <div id="copyright">&copy; 2023 <a href="http://kinkycraft.com/">KinkyCraft.com</a> - All rights reserved.</div>
+    </div>
+</div>
+
+<script src="text_edit.js"></script>
+
+</body>
+</html>
