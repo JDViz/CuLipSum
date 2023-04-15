@@ -30,7 +30,9 @@ function buildContentRadios(key, name, contentSelector) {
     const box = document.getElementById("radioContentBox");
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
-    div.innerHTML = itemContent;
+
+    let cleanContent = DOMPurify.sanitize(itemContent);
+    div.innerHTML = cleanContent;
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("wrapper");
     // Append the new <div> element to the "radioContentBox" element
@@ -114,7 +116,9 @@ function setFormatNormal() {
                 const items = currContentArray.splice(0, num);
                 const list = document.createElement(type);
                 for(let i = 0; i < items.length; i++) {
-                    const licontent = items[i];
+                    let cleanContent = DOMPurify.sanitize(items[i]);
+                    const licontent = cleanContent;
+                    // const licontent = items[i];
                     const li = document.createElement("li");
                     li.innerHTML = licontent;
                     list.appendChild(li);
@@ -124,10 +128,11 @@ function setFormatNormal() {
                 const paraContentArray = [];
                 for (let i = 1; i <= num; i++) {
                     const element = currContentArray.shift();
+                    let cleanContent = DOMPurify.sanitize(element);
                     if(i > 0 && i === boldedSentence) {
-                        paraContentArray.push(`<span class="boldie">${element}</span> `);
+                        paraContentArray.push(`<span class="boldie">${cleanContent}</span> `);
                     } else {
-                        paraContentArray.push(`${element} `);
+                        paraContentArray.push(`${cleanContent} `);
                     }
                 }
                 const para = document.createElement(type);

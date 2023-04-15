@@ -48,6 +48,7 @@ function saveContent(saveName, textBlock) {
     browser.storage.local.set({  // Save default to local storage
         [saveName]: textBlock
     }).then(() => {
+        resetAlerts();
         showElement('saved');
     }, onError);
 }
@@ -146,11 +147,17 @@ function buildContentRadios(key, name, contentSelector) {
                         <div class="indicator"></div>
                         <span class="text">${name}</span>
                     </label>`;
+
+    // let cleanHTML = DOMPurify.sanitize(externalHTML);
+    let cleanContent = DOMPurify.sanitize(itemContent);
+    // console.log(`Cleaned: ${cleanContent}`);
+
     // Get the HTML element with the ID "radioContentBox"
     const box = document.getElementById("radioContentBox");
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
-    div.innerHTML = itemContent;
+    div.innerHTML = cleanContent;
+    // div.setHTML(itemContent, { SANITIZER });
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("wrapper");
     // Append the new <div> element to the "radioContentBox" element

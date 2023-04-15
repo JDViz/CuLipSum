@@ -41,7 +41,8 @@ function buildContentList(key, name) {
     const box = document.getElementById("boxOfDeletes");
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
-    div.innerHTML = itemContent;
+    let cleanContent = DOMPurify.sanitize(itemContent);
+    div.innerHTML = cleanContent;
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("deleteItems");
     // Append the new <div> element to the "radioContentBox" element

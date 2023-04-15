@@ -3,7 +3,7 @@
   "name": "CuLipSum",
   "version": "1.0",
 
-  "description": "Checks all images on a page and BetaSafes them",
+  "description": "Custom Lorem Ipsum Generator",
 
   "icons": {
     "48": "icons/icon_typewriter_48.png",
@@ -39,7 +39,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com"
+      "id": "addon@kinkycraft.com"
     }
   }
 }

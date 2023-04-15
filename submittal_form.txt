@@ -1,0 +1,12 @@
+Custom Lorem Ipsum Generator. While I love the generator over at Fillerama (Futurama was one of the best!), I wanted to be able to upload my own text. Therefore, I built this Firefox Extension to let us do that.
+
+While there is demo material, there is also a place to upload your own content via text file upload from your own machine, or via copy/paste into the input page.
+
+Custom content will not be saved if you delete or reload the extension, so save your content separately. Since there is a way to upload text files, you'll be able to reload your content fairly easily if you save to txt file first.
+The first line of a text file will default to the title (but can be changed before you save), and the second line will be the tagline (also able to be changed before save).
+
+Games & Entertainment
+Web Development
+
+
+I wasn't sure about sanitizing the innerHTML. I'm using that to generate radio buttons and selector boxes, and since they're only uploading their own chosen content, I'm unsure of it's importance here. If it is unacceptable, please point me in the direction of ideas you have on how to sanitize it, but keep the functionality.
