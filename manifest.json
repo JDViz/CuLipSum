@@ -15,13 +15,6 @@
     "tabs"
   ],
 
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ],
-
   "options_ui": {
     "page": "popup/options_popup.html"
   },
