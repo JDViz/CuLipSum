@@ -9,7 +9,7 @@
  ~  @name			Options Popup
  ~  @description	This makes the options popup do stuff
  ~  @include		/options_popup/options.html
- ~  @version		0.0.01
+ ~  @version		1.0.01
  ~      == /UserScript == */
 
 // Working

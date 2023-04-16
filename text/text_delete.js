@@ -9,7 +9,7 @@
  ~  @name			text_delete
  ~  @description	This makes the text_delete page select and remove chosen content
  ~  @include		/text/text_delete.html
- ~  @version		1.0.00
+ ~  @version		1.0.01
  ~      == /UserScript == */
 
 function setDeleteBtnListener() {

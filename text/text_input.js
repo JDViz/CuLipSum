@@ -9,7 +9,7 @@
  ~  @name			text_input
  ~  @description	This styles the text_output.html page
  ~  @include		/text/text_output.html
- ~  @version		1.0.00
+ ~  @version		1.0.01
  ~      == /UserScript == */
 
 

@@ -9,7 +9,7 @@
  ~  @name			text_output
  ~  @description	This makes the output page do stuff
  ~  @include		/text/text_output.html
- ~  @version		1.0.00
+ ~  @version		1.0.01
  ~      == /UserScript == */
 
 function selectElementText(el, win) {

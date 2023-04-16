@@ -6,12 +6,15 @@
 
 ---
 
-03/30/2023 - Initial setup\
-04/09/2023 - Output generator complete\
-04/11/2023 - Input mechanism & page complete\
-04/14/2023 - Version 1 is done and ready to submit to Firefox.
+# Version 1.0.1 - 2023/04/15
 
-TODO: Package for submittal.
+---
+
+2023/03/30 - Initial setup\
+2023/04/09 - Output generator complete\
+2023/04/11 - Input mechanism & page complete\
+2023/04/14 - Version 1 is done and ready to submit to Firefox.\
+2023/04/15 - More Sanitation and streamlined initial content load.
 
 ---
 

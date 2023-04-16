@@ -9,7 +9,7 @@
 ~  @name			background.js
 ~  @description	    Stuff that happens on app load or runs in the background
 ~  @include		    background.js
-~  @version		    1.0.00
+~  @version		    1.0.01
            == /UserScript == */
 
 

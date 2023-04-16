@@ -9,7 +9,7 @@
  ~  @name			text_edit
  ~  @description	This makes the text_edit page select and edit content.
  ~  @include		/text/text_edit.html
- ~  @version		1.0.00
+ ~  @version		1.0.01
  ~      == /UserScript == */
 
 function onError(error) {
