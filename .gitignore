@@ -8,6 +8,7 @@ bin-release/
 .settings/
 .idea/
 personal_notes/
+working/
 
 # Other Files
 prepros.config
