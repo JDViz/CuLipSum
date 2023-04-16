@@ -97,7 +97,6 @@ a:hover {
 }
 
 #selectorContainer {
-  border: 1px solid rgba(255, 255, 255, 0.09);
   height: auto;
   padding: 10px;
 }
@@ -109,8 +108,6 @@ a:hover {
   padding: 0 0 10px 0;
 }
 #selectorContainer .selectorBoxes .radiogroup {
-  margin: auto;
-  min-height: 185px;
   height: 100%;
   width: 49%;
   display: inline-block;
@@ -231,6 +228,10 @@ a:hover {
   font-size: 6em;
 }
 
+.cautionText {
+  color: lightcoral;
+}
+
 #boxOfDeletes {
   text-align: center;
 }
@@ -260,4 +261,8 @@ button {
 }
 button:hover {
   background-color: lightcoral;
+}
+
+#cautionBox {
+  text-align: center;
 }

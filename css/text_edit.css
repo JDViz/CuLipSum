@@ -6,10 +6,10 @@
  */
 /*      == UserScript ==
  ~  @appname		CuLipSum
- ~  @name			text_input style
- ~  @description	This styles the text_input.html page
- ~  @include		/text/text_input.html
- ~  @version		0.0.01
+ ~  @name			text_edit style
+ ~  @description	This styles the text_edit.html page
+ ~  @include		/text/text_edit.html
+ ~  @version		1.0.00
  ~      == /UserScript == */
 /*!
  * Copyright (c) 2023. kinkycraft.com
@@ -97,7 +97,6 @@ a:hover {
 }
 
 #selectorContainer {
-  border: 1px solid rgba(255, 255, 255, 0.09);
   height: auto;
   padding: 10px;
 }
@@ -109,8 +108,6 @@ a:hover {
   padding: 0 0 10px 0;
 }
 #selectorContainer .selectorBoxes .radiogroup {
-  margin: auto;
-  min-height: 185px;
   height: 100%;
   width: 49%;
   display: inline-block;
@@ -231,34 +228,8 @@ a:hover {
   font-size: 6em;
 }
 
-#box_UploadFile, #box_entertext {
-  padding: 10px 0;
-}
-
-.btn-fileUpload {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  padding: 10px 24px;
-  background-color: darkolivegreen;
-  color: white;
-}
-.btn-fileUpload input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  outline: none;
-  cursor: inherit;
-  display: block;
-}
-.btn-fileUpload:hover {
-  background-color: lightcoral;
+.cautionText {
+  color: lightcoral;
 }
 
 .button {
@@ -289,11 +260,23 @@ a:hover {
   padding: 5px;
 }
 
+#inputTitle {
+  color: gray;
+}
+
+#inputSubmit {
+  margin-top: 20px;
+}
+
+#inputSubmit {
+  margin-top: 20px;
+}
+
 .alertText {
   font-weight: 700;
   color: firebrick;
 }
 
-#sentContentBox {
-  display: none;
+.radiogroup {
+  width: 100% !important;
 }

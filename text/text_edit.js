@@ -20,7 +20,6 @@ function hideElement(element) {
     document.getElementById(element).style.display = "none";
 }
 function showElement(element) {
-    console.log(`Saved`);
     document.getElementById(element).style.display = "inline-block";
 }
 
@@ -37,13 +36,10 @@ function saveContentChoice(btnValue) {
     browser.storage.local.set({  // Save default to local storage
         contentSelector: btnValue
     }).then();
-    // document.getElementById(btnValue).checked = true; // set relevent radio button to checked.
-    setChecked(btnValue);
+    setChecked(btnValue); // set relevent radio button to checked.
 }
 
 function saveContent(saveName, textBlock) {
-    // console.log(`Sent to save content.`)
-    // console.log(textBlock);
 
     browser.storage.local.set({  // Save default to local storage
         [saveName]: textBlock
@@ -64,17 +60,10 @@ function cleanContent(content) {
 }
 
 function sendTextForSave(key) {
-    console.log(`Clicked SendIT!`);
 
     let getTitle = document.getElementById('inputTitle').value;
     let titleNoSpaces = getTitle.replace(/\s/g,''); // remove any spaces
     let contentName = `${titleNoSpaces}TextContent`; // set the key for the storage.local entry.
-    // if(key !== contentName) {
-    //     console.log(`Old: ${key}, does not match new ${contentName}. Delete old content first`);
-    //     browser.storage.local.remove(key).then();
-    // } else {
-    //     console.log(`Title did not change. Overwrite old: ${key}`);
-    // }
 
     let getTag = document.getElementById('inputTagline').value;
 
@@ -103,7 +92,6 @@ function setRadioListeners(radioNames) {
             // Get the value of the clicked radio button
             let btnValue = btn.value;
 
-            console.log(`${btnValue} picked.`)
             saveContentChoice(btnValue);
             // Reload the whole page
             pageLoad();
@@ -112,10 +100,9 @@ function setRadioListeners(radioNames) {
 }
 
 function populateContent(key, content) {
-    // console.log(content);
-    let contentArray = content.split('\n'); // save the content to an array || console.log(`length before shift: ${contentArray.length}`);
+    let contentArray = content.split('\n'); // save the content to an array
     let title = contentArray.shift(); // Take the top line off and make it the title
-    let subTitle = contentArray.shift(); // Take the second line off and make it the subTitle || console.log(`length after shift: ${contentArray.length}`);
+    let subTitle = contentArray.shift(); // Take the second line off and make it the subTitle
     const CONTENT_ALERT = document.getElementById('contentAlert');
 
     // First line becomes the title
@@ -130,13 +117,10 @@ function populateContent(key, content) {
     SUBMIT_BTN.addEventListener('click', () => {
         if(INPUT_BOX.value) {
             CONTENT_ALERT.innerText = "";
-            // console.log(`input Box is Good. Saving`);
             sendTextForSave(key);
         } else {
             CONTENT_ALERT.innerText = "Content cannot be empty.";
-            // console.log(`input Box is empty`);
         }
-
     });
 }
 
@@ -148,16 +132,13 @@ function buildContentRadios(key, name, contentSelector) {
                         <span class="text">${name}</span>
                     </label>`;
 
-    // let cleanHTML = DOMPurify.sanitize(externalHTML);
     let cleanContent = DOMPurify.sanitize(itemContent);
-    // console.log(`Cleaned: ${cleanContent}`);
 
     // Get the HTML element with the ID "radioContentBox"
     const box = document.getElementById("radioContentBox");
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
     div.innerHTML = cleanContent;
-    // div.setHTML(itemContent, { SANITIZER });
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("wrapper");
     // Append the new <div> element to the "radioContentBox" element
@@ -177,21 +158,19 @@ function pageLoad() { // When the page loads
     emptyRadios('radioContentBox');  // Empty the content radio buttons to start fresh.
 
     browser.storage.local.get(all => { // Pull local storage data for this extension
-        let contentSelector = all.contentSelector; // set the saved chosen content || console.log(`contentSelector: ${contentSelector}`);
+        let contentSelector = all.contentSelector; // set the saved chosen content
 
-        for (const [key, val] of Object.entries(all)) { // Loop through the stored data || console.log(`${key} :: ${val}`);
-            if (key.includes('TextContent') && key !== 'defaultTextContent' && key !== 'DuneTextContent') { // For each piece of data that is content, build a radio button for it || console.log(`${key} :: ${val}`); // console.log(`All TextContent: ${key}`);
+        for (const [key, val] of Object.entries(all)) { // Loop through the stored data
+            if (key.includes('TextContent')) { // For each piece of data that is content, build a radio button for it
                 let lines = val.split('\n');
                 let name = lines[0];
                 buildContentRadios(key, name, contentSelector);
             }
             if (key === contentSelector && key !== 'defaultTextContent') { // where the content matches the saved selected, send it to the populateContent function
-                // console.log(`Selected Content: ${key}`);
                 populateContent(key, val);
             }
         }
         setRadioListeners('radioContent'); // Set listeners to execute when the radio buttons change.
     });
-    // console.log(`Page Loaded.`)
 }
 pageLoad();

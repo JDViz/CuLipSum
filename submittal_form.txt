@@ -10,3 +10,7 @@ Web Development
 
 
 I wasn't sure about sanitizing the innerHTML. I'm using that to generate radio buttons and selector boxes, and since they're only uploading their own chosen content, I'm unsure of it's importance here. If it is unacceptable, please point me in the direction of ideas you have on how to sanitize it, but keep the functionality.
+
+
+Pulled in DOMPurify 3.0.2 for sanitation. It is in the DIST folder.
+github.com/cure53/DOMPurify/blob/3.0.2/LICENSE

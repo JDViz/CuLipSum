@@ -13,10 +13,6 @@
  ~      == /UserScript == */
 
 function setDeleteBtnListener() {
-    // deleteButton = document.getElementById(`${buttonID}delete`);
-    // deleteButton.addEventListener('click', () => {
-    //     console.log(`Deleting ${key}`);
-    // });
 
     // Get all radio buttons with the given name
     let deleteBtns = document.getElementsByClassName('delete_button');
@@ -25,8 +21,6 @@ function setDeleteBtnListener() {
     for(let btn of deleteBtns) {
         btn.addEventListener('click', () => {
             // Get the value of the clicked radio button
-            // let btnValue = btn.id;
-            console.log(`Deleting ${btn.id}`);
             browser.storage.local.remove(btn.id).then();
             pageLoad();
         });
@@ -34,7 +28,6 @@ function setDeleteBtnListener() {
 }
 
 function buildContentList(key, name) {
-    console.log(`${key} - ${name}`);
     //Create an HTML string that defines the radio button and its associated label
     const itemContent = `<div class="itemName"><h3>${name}</h3></div><button id="${key}" class="delete_button">Delete</button>`;
     // Get the HTML element with the ID "radioContentBox"
@@ -50,13 +43,12 @@ function buildContentList(key, name) {
 }
 
 function pageLoad() { // When the page loads
-    // emptyRadios('radioContentBox');  // Empty the content radio buttons to start fresh.
 
     document.getElementById('boxOfDeletes').innerHTML = '';
     browser.storage.local.get(all => {
 
-        for (const [key, val] of Object.entries(all)) { // Loop through the stored data || console.log(`${key} :: ${val}`);
-            if (key.includes('TextContent') && key !== 'defaultTextContent' && key !== 'DuneTextContent') { // For each piece of data that is content, build a radio button for it || console.log(`${key} :: ${val}`); // console.log(`All TextContent: ${key}`);
+        for (const [key, val] of Object.entries(all)) { // Loop through the stored data
+            if (key.includes('TextContent')) { // For each piece of data that is content, build a radio button for it
                 let lines = val.split('\n');
                 let name = lines[0];
                 buildContentList(key, name);

@@ -11,15 +11,26 @@
 ~  @include		    background.js
 ~  @version		    1.0.00
            == /UserScript == */
-// console.log();
 
+
+function cleanContent(content) {
+    content = content.replace(/(^[ \t]*\n)/gm, ""); // removes empty lines
+    content = content.replace(/^\s+|\s+$/gm, ""); // removes leading spaces from all lines
+    return content;
+}
+
+function fetchAndSaveDefaultContent(filePath, textContentName) {
+    fetch(filePath)
+        .then(response => response.text())
+        .then((data) => {
+            data = cleanContent(data);
+            browser.storage.local.set({
+                [textContentName]: data
+            }).then();
+        });
+}
 function onGotLocalStorage(items) { // Do this once local storage has been loaded.
-    // console.log(item)
-    if (items.defaultTextContent) { // If default content exists in local storage
-        // console.log(`defaultContent Exists:`);
-        // console.log(item.defaultContent); // print it to console
-    } else {
-        console.log(`Default content does not exist, loading...`);
+    if (!items.FireflyTextContent) { // If firefly is not loaded re-pull all the default content, this is the default content
         loadDefaultContent(); // Create it.
     }
 
@@ -32,35 +43,14 @@ function onGotLocalStorage(items) { // Do this once local storage has been loade
         }).then();
     }
 
-    if (items.contentSelector && items.formatSelector) {
-        // handleSelectors(items.contentSelector, items.formatSelector);
-        // console.log(`Selectors Exist`);
-    } else {
-        console.log(`Selectors Missing. Setting defaults...`);
-        saveSelectors(`defaultTextContent`, 'format_normal');
-        // saveSelectors(DEFAULT_NAME, 'format_normal');
+    if (!items.contentSelector && !items.formatSelector) {
+        saveSelectors(`FireflyTextContent`, 'format_normal');
     }
 }
 function loadDefaultContent() {
-    console.log(`Loading Default Content`);
-    const fireflyTextFile = '/text/sentences_firefly.txt'; // Default content file path
-    const duneTextFile = '/text/sentences_dune.txt';
-
-    // Read in default text file, process it, and save it to Local Storage.
-    fetch(fireflyTextFile) // Get content from the file
-        .then(response => response.text()) // once it loads...
-        .then((data) => {
-            browser.storage.local.set({
-                defaultTextContent: data
-            }).then();
-        });
-    fetch(duneTextFile)
-        .then(response => response.text())
-        .then((data) => {
-            browser.storage.local.set({
-                DuneTextContent: data
-            }).then();
-        });
+    fetchAndSaveDefaultContent('/text/sentences_firefly.txt', 'FireflyTextContent');
+    fetchAndSaveDefaultContent('/text/sentences_dune.txt', 'DuneTextContent');
+    fetchAndSaveDefaultContent('/text/sentences_InvaderZim.txt', 'InvaderZimTextContent');
 }
 
 function onError(error) {

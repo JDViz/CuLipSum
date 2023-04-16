@@ -90,7 +90,6 @@ a {
 }
 
 #selectorContainer {
-  border: $brdr_main;
   height: auto;
   padding: 10px;
 
@@ -103,8 +102,6 @@ a {
     padding: 0 0 10px 0;
 
     .radiogroup {
-      margin: auto;
-      min-height: 185px;
       height: 100%;
       width: 49%;
       display: inline-block;
@@ -241,4 +238,8 @@ a {
 #contentTitle {
   font-size: 6em;
 }
-// END Radio Styles
+
+
+.cautionText {
+  color: lightcoral;
+}

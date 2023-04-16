@@ -21,12 +21,9 @@ function hideElement(element) {
     document.getElementById(element).style.display = "none";
 }
 function showElement(element) {
-    console.log(`Saved`);
     document.getElementById(element).style.display = "inline-block";
 }
 function saveContent(saveName, textBlock) {
-    console.log(`Sent to save content.`)
-    // console.log(textBlock);
 
     browser.storage.local.set({  // Save default to local storage
         [saveName]: textBlock
@@ -55,7 +52,6 @@ function getDummyContent(get) {
 }
 
 function sendTextForSave() {
-    console.log(`Clicked SendIT!`);
 
     // for internal testing. takes the content from hidden Ptag sentContent and saves it as a content item.
     getDummyContent(false);
@@ -77,23 +73,17 @@ function sendTextForSave() {
 
     let newTextArray = INPUT_BLOCK.split('\n');
     newTextArray.unshift(`${INPUT_TITLE}`, inputTagline);
-    // let newTextString = JSON.stringify(newTextArray);
     let newTextString = newTextArray.join('\n');
 
     if(INPUT_TITLE && INPUT_BLOCK) { // if the title and main content block aren't empty... send to saveContent().
         resetAlerts();
-        // console.log(`${contentName}:${INPUT_BLOCK}`);
         saveContent(contentName, newTextString);
     } else {  // send alert that the title or main content box (or both) are empty.
         if(!INPUT_TITLE) {
-            const titleAlertText = 'Title cannot be empty!';
-            console.log(titleAlertText);
-            document.getElementById('titleAlert').innerText = titleAlertText;
+            document.getElementById('titleAlert').innerText = 'Title cannot be empty!';
         }
         if(!INPUT_BLOCK) {
-            const titleAlertText = 'Content box cannot be empty!';
-            console.log(titleAlertText);
-            document.getElementById('contentAlert').innerText = titleAlertText;
+            document.getElementById('contentAlert').innerText = 'Content box cannot be empty!';
         }
     }
 }

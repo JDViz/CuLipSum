@@ -17,8 +17,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Text Edit - CuLipSum&trade;</title>
-    <link rel="stylesheet" href="../styles/normalize.css"/>
-    <link rel="stylesheet" href="../styles/text_edit.css"/>
+    <link rel="stylesheet" href="../css/normalize.css"/>
+    <link rel="stylesheet" href="../css/text_edit.css"/>
 </head>
 <body>
 <div id="mainContainer">
@@ -48,6 +48,11 @@
                 <div><h3>Select Content to Display Below.</h3></div>
             </div>
         </div>
+        <div>
+            <p class="cautionText">You can edit the default content and the change will be mainly persistent.<br/>
+                <strong>WARNING:</strong> Be aware that if the extension is fully reloaded by a browser update or through the extension manager, it will revert to it's original.<br/>
+                So, copy your edits into a text file so you can reload your custom edits easily.</p>
+        </div>
     </div>
     <div id="box_edittext">
         <h3>Or you can paste your content into the fields below.</h3>
@@ -64,7 +69,7 @@
             <p id="contentAlert" class="alertText"></p>
         </form>
         <div id="saveBlock">
-            <div><button id="inputSubmit" class="button">Send It!</button></div><div><h2 id="saved">SAVED!</h2></div>
+            <div><button id="inputSubmit" class="button">SAVE IT!</button></div><div><h2 id="saved">SAVED!</h2></div>
         </div>
     </div>
     <div id="footerbox">

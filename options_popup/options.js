@@ -12,67 +12,6 @@
  ~  @version		0.0.01
  ~      == /UserScript == */
 
-function onError(error) {
-    console.error(`Error: ${error}`);
-}
-
-function getTabTitle() {
-
-    browser.tabs.query({
-        currentWindow: true
-    }).then((tabs) => {
-        let tabExists = false;
-        let tabId;
-        // Loop through the tabs and find the one with the matching ID
-        for (let tab of tabs) {
-            if(tab.title.includes('CuLipSum')) {
-                tabExists = true;
-                tabId = tab.id;
-            }
-        }
-
-        if(tabExists) {
-            console.log(`CuLipSum Tab Existsj on tab ${tabId}`);
-        } else {
-            console.log(`CuLipSum Tab Does NOT Exist`);
-        }
-
-    });
-
-    // Working gets the active tab's Title.
-    // browser.tabs.query({active: true, windowId: browser.windows.WINDOW_ID_CURRENT})
-    //     .then(tabs => browser.tabs.get(tabs[0].id))
-    //     .then(tab => {
-    //         console.info(tab.title);
-    //     });
-
-}
-
-// function singleBtnListener(element, link) {
-//     document.getElementById(element).addEventListener(`click`, () => {
-//         // Query all tabs in the current window
-//         browser.tabs.query({
-//             currentWindow: true
-//         }).then((tabs) => {
-//             // Loop through the tabs and find the one with the matching ID
-//             for (let tab of tabs) {
-//                 if (tab.title.includes('CuLipSum')) {
-//                     // Set the matching tab as active to switch to it
-//                     browser.tabs.update(tabId, {
-//                         active: true,
-//                         url: link
-//                     });
-//                     break;
-//                 } else {
-//                     browser.tabs.create({url: link}).then();
-//                 }
-//             }
-//         });
-//         // browser.tabs.create({url: link}).then();
-//         // browser.tabs.update({url: link}).then();
-//     });
-// }
-
 // Working
 function singleBtnListener(element, link) {
     document.getElementById(element).addEventListener(`click`, () => {
@@ -92,29 +31,19 @@ function singleBtnListener(element, link) {
             }
 
             if(tabExists) {
-                console.log(`CuLipSum Tab Exists`);
                 browser.tabs.update(tabId, {
                     active: true,
                     url: link
                 });
             } else {
-                console.log(`CuLipSum Tab Does NOT Exist, opening in a new one.`);
                 browser.tabs.create({url: link}).then();
             }
-
         });
-
-        // browser.tabs.create({url: link}).then();
-        // browser.tabs.update({url: link}).then();
     });
 }
 
 // Define a function to set up button listeners
 function setButtonListeners() {
-    // Set event listener for button to reload the extension
-    // document.getElementById(`btn_reload_extension`).addEventListener(`click`, reloadEx);
-    // document.getElementById('btn_get_tab').addEventListener('click', getTabTitle);
-
     singleBtnListener(`btn_generate_page`, "/text/text_output.html#culipsum_page");
     singleBtnListener(`btn_input_page`, "/text/text_input.html#culipsum_page");
     singleBtnListener(`btn_delete_page`, "/text/text_delete.html#culipsum_page");

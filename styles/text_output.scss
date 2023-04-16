@@ -45,4 +45,31 @@ body {
   margin-left: 100px;
 }
 
+#contentTitleBox {
 
+  //div {
+  //  display: inline-block;
+  //  width:100%;
+  //}
+  #titleBlock {
+    //width:100%;
+  }
+  #selectBtnsDiv {
+    text-align: right;
+    .button {
+      padding: 10px 24px;
+      background-color: lightcoral;
+      color: white;
+      width: 200px;
+      border: none;
+
+      &:hover {
+        background-color: lightpink;
+        color: firebrick;
+      }
+    }
+  }
+}
+.radiogroup {
+  min-height: 185px;
+}

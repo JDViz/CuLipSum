@@ -6,10 +6,10 @@
  */
 /*      == UserScript ==
  ~  @appname		CuLipSum
- ~  @name			text_edit style
- ~  @description	This styles the text_edit.html page
- ~  @include		/text/text_edit.html
- ~  @version		1.0.00
+ ~  @name			Options Popup style
+ ~  @description	This styles the otions.html page
+ ~  @include		/options_popup/options.html
+ ~  @version		0.0.01
  ~      == /UserScript == */
 /*!
  * Copyright (c) 2023. kinkycraft.com
@@ -97,7 +97,6 @@ a:hover {
 }
 
 #selectorContainer {
-  border: 1px solid rgba(255, 255, 255, 0.09);
   height: auto;
   padding: 10px;
 }
@@ -109,8 +108,6 @@ a:hover {
   padding: 0 0 10px 0;
 }
 #selectorContainer .selectorBoxes .radiogroup {
-  margin: auto;
-  min-height: 185px;
   height: 100%;
   width: 49%;
   display: inline-block;
@@ -231,51 +228,40 @@ a:hover {
   font-size: 6em;
 }
 
-.button {
+.cautionText {
+  color: lightcoral;
+}
+
+.container {
+  justify-content: center;
+  align-content: center;
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+}
+.container .item {
+  text-align: center;
+}
+.container p .button {
   padding: 10px 24px;
-  width: 200px;
-  background-color: darkolivegreen;
+  width: 100%;
+  background-color: #222222;
   border: none;
   color: white;
 }
-.button:hover {
+.container p .button:hover {
   background-color: lightcoral;
 }
-
-#inputForm label {
-  display: inline-block;
-  width: 100px;
+.container p #button1 {
+  background-color: darkolivegreen;
 }
-#inputForm textarea, #inputForm input {
-  background-color: #323232;
-  color: white;
-  outline: none;
-  border: 0;
+.container p #button1:hover {
+  background-color: lightcoral;
 }
-#inputForm textarea {
-  padding: 5px 20px 20px 20px;
+.container p #button2 {
+  background-color: darksalmon;
 }
-#inputForm input {
-  padding: 5px;
-}
-
-#inputTitle {
-  color: gray;
-}
-
-#inputSubmit {
-  margin-top: 20px;
-}
-
-#inputSubmit {
-  margin-top: 20px;
-}
-
-.alertText {
-  font-weight: 700;
-  color: firebrick;
-}
-
-.radiogroup {
-  width: 100% !important;
+.container p #button2:hover {
+  background-color: lightcoral;
 }

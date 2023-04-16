@@ -12,7 +12,21 @@
  ~  @version		1.0.00
  ~      == /UserScript == */
 
-// console.log(item);
+function selectElementText(el, win) {
+    win = win || window;
+    var doc = win.document, sel, range;
+    if (win.getSelection && doc.createRange) {
+        sel = win.getSelection();
+        range = doc.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    } else if (doc.body.createTextRange) {
+        range = doc.body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
+    }
+}
 
 function emptyRadios(radioNames) { // Empties the radio buttons prior to refreshing them.
     document.getElementById(radioNames).innerHTML = "";
@@ -49,15 +63,13 @@ function saveContentChoice(btnValue) {
     browser.storage.local.set({  // Save default to local storage
         contentSelector: btnValue
     }).then();
-    // document.getElementById(btnValue).checked = true; // set relevent radio button to checked.
-    setChecked(btnValue);
+    setChecked(btnValue); // set relevent radio button to checked.
 }
 function saveFormatChoice(btnValue) {
     browser.storage.local.set({  // Save default to local storage
         formatSelector: btnValue
     }).then();
-    // document.getElementById(btnValue).checked = true; // set relevent radio button to checked.
-    setChecked(btnValue);
+    setChecked(btnValue); // set relevent radio button to checked.
 }
 
 function setRadioListeners(radioNames) {
@@ -93,20 +105,16 @@ function setChecked(btnValue) {
 function setFormatNormal() {
     browser.storage.local.get('currentContent', (item) => {
         let currentContent = item.currentContent;
-        // console.log(currentContent);
         let arrayHolder = JSON.parse(currentContent); // Keep a master copy of the content in arrayHolder
         let currContentArray = [];  // Create a working copy of the content
 
         for (i = 0; i < arrayHolder.length; i++) { // copy the master copy into currContentArray
             currContentArray[i] = arrayHolder[i];
         }
-        // console.log(currContentArray);
 
-        // document.getElementById('selectorMessage').innerHTML = `Selected: Normal Output`;
         document.getElementById('boxOutput').innerHTML = ``;
         const INIT_LENGTH = currContentArray.length;
         function writeElement(type, num, boldedSentence, emphasized) {
-            // console.log(`${currContentArray.length} < ${num} || ${arrayHolder.length}`);
             if(currContentArray.length < num) { // If the working content array is not long enough for the requested paragraph, refill it from the master content array.
                 for (i = 0; i < arrayHolder.length; i++) {
                     currContentArray[i] = arrayHolder[i];
@@ -118,7 +126,6 @@ function setFormatNormal() {
                 for(let i = 0; i < items.length; i++) {
                     let cleanContent = DOMPurify.sanitize(items[i]);
                     const licontent = cleanContent;
-                    // const licontent = items[i];
                     const li = document.createElement("li");
                     li.innerHTML = licontent;
                     list.appendChild(li);
@@ -189,14 +196,11 @@ function setFormatNormal() {
 }
 
 function setFormatHTML() {
-    // document.getElementById('selectorMessage').innerHTML = `Selected: HTML Output`;
     document.getElementById('boxOutput').innerHTML = ``; // Empty the boxOutput div
     document.getElementById('lineCount').innerHTML = ''; // Empty the lineCount <p>
-    // document.getElementById('boxOutput').innerHTML = contentArray;
-    browser.storage.local.get('outputHTML', (item) => { // console.log(item.formatSelector);
+    browser.storage.local.get('outputHTML', (item) => {
         const formattedHTML = item.outputHTML;
 
-        // .replace(/\\n/g, '')
         let cleanedHTML = JSON.stringify(formattedHTML);
         cleanedHTML = cleanedHTML.replace(/\\n/g, '');
         cleanedHTML = cleanedHTML.replace(/"/g, '');
@@ -221,13 +225,8 @@ function setFormatHTML() {
             return result.substring(1, result.length-3);
         }
 
-
-
         let beautHTML = beautifyHTML(cleanedHTML);
-        // beautHTML = beautHTML.replace(/\n\n<span/g, `<span`);
-        // beautHTML = beautHTML.replace(/<p>\n/g, `<p>`);
         beautHTML = beautHTML.replace(/>>/g, `>`);
-        // console.log(beautHTML);
         document.getElementById('boxOutput').innerText = beautHTML;
     });
 }
@@ -237,7 +236,6 @@ function setFormatMarkdown() {
         let currentContent = item.currentContent;
         let currContentArray = JSON.parse(currentContent);
 
-        // document.getElementById('selectorMessage').innerHTML = `Selected: Markdown Output`;
         document.getElementById('boxOutput').innerHTML = ``;
         const INIT_LENGTH = currContentArray.length;
         function writeElement(type, num, boldedSentence, emphasized) {
@@ -245,7 +243,6 @@ function setFormatMarkdown() {
             let emph = ``;
 
             if(emphasized) {
-                // paraContentArray.push(`***`);
                 emph = `***`;
             }
 
@@ -259,12 +256,8 @@ function setFormatMarkdown() {
                 }
             }
 
-            // if(emphasized) { paraContentArray.push(`***<br>`); }
-
             const ptype = document.createElement('p');
             ptype.innerHTML = paraContentArray.join("");
-            // const paragraph = document.createTextNode(paraContentArray.toString());
-            // console.log(ptype);
             document.getElementById("boxOutput").appendChild(ptype);
 
         }
@@ -309,7 +302,7 @@ function setFormatPlain() {
 
     browser.storage.local.get('currentContent', (item) => {
         let currContentArray = JSON.parse(item.currentContent);
-        let paragraph = document.getElementById('plainOutput');
+        document.getElementById('lineCount').innerText = `${currContentArray.length} Total Lines`;
 
         for(let i = 0; i < currContentArray.length; i++) {
             const itemContent = `${currContentArray[i]}<br>`;
@@ -318,11 +311,6 @@ function setFormatPlain() {
             document.getElementById('boxOutput').appendChild(line);
 
         }
-
-        // document.getElementById('selectorMessage').innerHTML = `Selected: Plain Output`;
-        // document.getElementById('boxOutput').innerHTML = ``;
-        // document.getElementById('boxOutput').innerText = currContentArray.join("");
-        // document.getElementById('lineCount').innerHTML = currContentArray.length;
     });
 }
 
@@ -331,7 +319,6 @@ function setFormatBlock() {
         let currentContent = item.currentContent;
         let currContentArray = JSON.parse(currentContent);
 
-        // document.getElementById('selectorMessage').innerHTML = `Selected: Block Output`;
         document.getElementById('boxOutput').innerHTML = ``;
         document.getElementById('boxOutput').innerHTML = currContentArray.join(" ");
         document.getElementById('lineCount').innerHTML = currContentArray.length; // Put content in page
@@ -346,9 +333,10 @@ function saveCurrentContent(contentArray) {
 }
 
 function populateContent(content) {
-    let contentArray = content.split('\n'); // save the content to an array || console.log(`length before shift: ${contentArray.length}`);
+    let contentArray = content.split('\n'); // save the content to an array
+    // contentArray =
     let title = contentArray.shift(); // Take the top line off and make it the title
-    let subTitle = contentArray.shift(); // Take the second line off and make it the subTitle || console.log(`length after shift: ${contentArray.length}`);
+    let subTitle = contentArray.shift(); // Take the second line off and make it the subTitle
 
     document.getElementById('contentTitle').innerText = title.toString(); // Publish to the page
     document.getElementById('subTitle').innerText = subTitle.toString(); // Publish to the page
@@ -376,7 +364,7 @@ function populateContent(content) {
 
     function getFormat() { // Get the chosen/desired format
         let format = '';
-        browser.storage.local.get('formatSelector', (item) => { // console.log(item.formatSelector);
+        browser.storage.local.get('formatSelector', (item) => {
             format = item.formatSelector;
             createFormat(format);
         });
@@ -410,21 +398,48 @@ function pageLoad() { // When the page loads
 
     browser.storage.local.get(all => { // Pull local storage data for this extension
         setChecked(all.formatSelector); // Set the saved format radio button.
-        let contentSelector = all.contentSelector; // set the saved chosen content || console.log(`contentSelector: ${contentSelector}`);
+        let contentSelector = all.contentSelector; // set the saved chosen content
 
-        for (const [key, val] of Object.entries(all)) { // Loop through the stored data || console.log(`${key} :: ${val}`);
-            if (key.includes('TextContent')) { // For each piece of data that is content, build a radio button for it || console.log(`${key} :: ${val}`); // console.log(`All TextContent: ${key}`);
+        const CONTENT_ITEMS = [];
+        for (const [key, val] of Object.entries(all)) { // Loop through the stored data
+            if (key.includes('TextContent')) { // For each piece of data that is content, build a radio button for it
                 let lines = val.split('\n');
                 let name = lines[0];
-                buildContentRadios(key, name, contentSelector);
+                let item = {
+                    "Name": name,
+                    "Key": key,
+                    "ContentSelector": contentSelector,
+                    "val": val
+                }
+                CONTENT_ITEMS.push(item);
             }
-            if (key === contentSelector) { // where the content matches the saved selected, send it to the populateContent function
-                // console.log(`Selected Content: ${key}`);
-                populateContent(val);
+        }
+        // Sort the content items by alpha
+        function compare( a, b ) {
+            if ( a.Name < b.Name ){
+                return -1;
+            }
+            if ( a.Name > b.Name ){
+                return 1;
+            }
+            return 0;
+        }
+
+        let sortedContent = CONTENT_ITEMS.sort( compare );
+        for (let i = 0; i < sortedContent.length; i++) {
+            let itemKey = sortedContent[i].Key;
+            let itemName = sortedContent[i].Name;
+            let itemContentSelector = sortedContent[i].ContentSelector;
+            let itemVal = sortedContent[i].val;
+            buildContentRadios(itemKey, itemName, itemContentSelector);
+            if (itemKey === itemContentSelector) { // where the content matches the saved selected, send it to the populateContent function
+                populateContent(itemVal);
             }
         }
         setRadioListeners('radioContent'); // Set listeners to execute when the radio buttons change.
     });
-    // console.log(`Page Loaded.`)
+    document.getElementById('btn_select_all').addEventListener('click', () => {
+        selectElementText(document.getElementById("boxOutput"));
+    })
 }
 pageLoad();
