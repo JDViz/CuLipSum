@@ -12,5 +12,16 @@ Web Development
 I wasn't sure about sanitizing the innerHTML. I'm using that to generate radio buttons and selector boxes, and since they're only uploading their own chosen content, I'm unsure of it's importance here. If it is unacceptable, please point me in the direction of ideas you have on how to sanitize it, but keep the functionality.
 
 
-Pulled in DOMPurify 3.0.2 for sanitation. It is in the DIST folder.
-github.com/cure53/DOMPurify/blob/3.0.2/LICENSE
+- Pulled in DOMPurify 3.0.2 for HTML inject sanitation. It is in the DIST folder. github.com/cure53/DOMPurify
+- Removed permissions for all sites.
+- Removed console.log() tests.
+- Removed unused commented placeholder code.
+- Streamlined some functions.
+- Streamlined initial content load and save into storage.local.
+
+<img src=x onerror=alert(1)//>
+<svg><g/onload=alert(2)//<p>
+<p>abc<iframe//src=jAva&Tab;script:alert(3)>def</p>
+<math><mi//xlink:href="data:x,<script>alert(4)</script>">
+<TABLE><tr><td>HELLO</tr></TABL>
+<UL><li><A HREF=//google.com>click</UL>

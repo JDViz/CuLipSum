@@ -11,6 +11,7 @@
  ~  @include		/text/text_output.html
  ~  @version		1.0.01
  ~      == /UserScript == */
+// DOMPurify.sanitize(itemContent)
 
 
 function onError(error) {
@@ -24,7 +25,7 @@ function showElement(element) {
     document.getElementById(element).style.display = "inline-block";
 }
 function saveContent(saveName, textBlock) {
-
+    textBlock = DOMPurify.sanitize(textBlock);
     browser.storage.local.set({  // Save default to local storage
         [saveName]: textBlock
     }).then(() => {

@@ -45,8 +45,7 @@ function buildContentRadios(key, name, contentSelector) {
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
 
-    let cleanContent = DOMPurify.sanitize(itemContent);
-    div.innerHTML = cleanContent;
+    div.innerHTML = DOMPurify.sanitize(itemContent);
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("wrapper");
     // Append the new <div> element to the "radioContentBox" element
@@ -127,7 +126,7 @@ function setFormatNormal() {
                     let cleanContent = DOMPurify.sanitize(items[i]);
                     const licontent = cleanContent;
                     const li = document.createElement("li");
-                    li.innerHTML = licontent;
+                    li.innerHTML = DOMPurify.sanitize(licontent);
                     list.appendChild(li);
                 }
                 document.getElementById("boxOutput").appendChild(list);
@@ -143,7 +142,7 @@ function setFormatNormal() {
                     }
                 }
                 const para = document.createElement(type);
-                para.innerHTML = paraContentArray.join("");
+                para.innerHTML = DOMPurify.sanitize(paraContentArray.join(""));
                 if(emphasized) {
                     para.classList.add("emphasis");
                 }
@@ -182,7 +181,7 @@ function setFormatNormal() {
         // Cleanup the content for printing.
         let linesUsed = INIT_LENGTH - currContentArray.length;
         let lineCounts = `Lines used: ${linesUsed} || Lines Available: ${INIT_LENGTH} || Lines remaining: ${currContentArray.length}`;
-        document.getElementById('lineCount').innerHTML = lineCounts;
+        document.getElementById('lineCount').innerHTML = DOMPurify.sanitize(lineCounts);
 
         // Get the numbers of sentences and report them.
         let getHTML = document.getElementById('boxOutput').innerHTML.toString();
@@ -257,7 +256,8 @@ function setFormatMarkdown() {
             }
 
             const ptype = document.createElement('p');
-            ptype.innerHTML = paraContentArray.join("");
+            // ptype.innerHTML = paraContentArray.join("");
+            ptype.innerHTML = DOMPurify.sanitize(paraContentArray.join(""));
             document.getElementById("boxOutput").appendChild(ptype);
 
         }
@@ -293,7 +293,7 @@ function setFormatMarkdown() {
         let linesUsed = INIT_LENGTH - currContentArray.length;
         let lineCounts = `Lines used: ${linesUsed} || Lines Available: ${INIT_LENGTH} || Lines remaining: ${currContentArray.length}`;
 
-        document.getElementById('lineCount').innerHTML = lineCounts;
+        document.getElementById('lineCount').innerHTML = DOMPurify.sanitize(lineCounts);
     });
 }
 
@@ -307,7 +307,7 @@ function setFormatPlain() {
         for(let i = 0; i < currContentArray.length; i++) {
             const itemContent = `${currContentArray[i]}<br>`;
             let line = document.createElement("p");
-            line.innerHTML = itemContent;
+            line.innerHTML = DOMPurify.sanitize(itemContent);
             document.getElementById('boxOutput').appendChild(line);
 
         }
@@ -320,7 +320,8 @@ function setFormatBlock() {
         let currContentArray = JSON.parse(currentContent);
 
         document.getElementById('boxOutput').innerHTML = ``;
-        document.getElementById('boxOutput').innerHTML = currContentArray.join(" ");
+        let joinedContentArray = currContentArray.join(" ");
+        document.getElementById('boxOutput').innerHTML = DOMPurify.sanitize(joinedContentArray);
         document.getElementById('lineCount').innerHTML = currContentArray.length; // Put content in page
     });
 }
@@ -440,6 +441,6 @@ function pageLoad() { // When the page loads
     });
     document.getElementById('btn_select_all').addEventListener('click', () => {
         selectElementText(document.getElementById("boxOutput"));
-    })
+    });
 }
 pageLoad();

@@ -13,7 +13,7 @@ personal_notes/
 prepros.config
 .DS_Store
 config.codekit3
-
+*.zip
 
 # Executables
 #*.swf

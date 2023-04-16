@@ -33,6 +33,7 @@ function setChecked(btnValue) {
 }
 
 function saveContentChoice(btnValue) {
+    btnValue = DOMPurify.sanitize(btnValue);
     browser.storage.local.set({  // Save default to local storage
         contentSelector: btnValue
     }).then();
@@ -40,7 +41,7 @@ function saveContentChoice(btnValue) {
 }
 
 function saveContent(saveName, textBlock) {
-
+    textBlock = DOMPurify.sanitize(textBlock);
     browser.storage.local.set({  // Save default to local storage
         [saveName]: textBlock
     }).then(() => {
@@ -132,13 +133,11 @@ function buildContentRadios(key, name, contentSelector) {
                         <span class="text">${name}</span>
                     </label>`;
 
-    let cleanContent = DOMPurify.sanitize(itemContent);
-
     // Get the HTML element with the ID "radioContentBox"
     const box = document.getElementById("radioContentBox");
     // Create a new <div> element and set its innerHTML to the HTML string created above
     const div = document.createElement("div");
-    div.innerHTML = cleanContent;
+    div.innerHTML = DOMPurify.sanitize(itemContent);
     // Add a class of "wrapper" to the new <div> element
     div.classList.add("wrapper");
     // Append the new <div> element to the "radioContentBox" element
