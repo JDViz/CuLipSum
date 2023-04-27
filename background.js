@@ -23,7 +23,9 @@ function fetchAndSaveDefaultContent(filePath, textContentName) {
     fetch(filePath)
         .then(response => response.text())
         .then((data) => {
-            data = cleanContent(data);
+            // console.log(`Data PreClean: ${data}`);
+            // data = cleanContent(data);
+            // console.log(`Data PostClean: ${data}`);
             browser.storage.local.set({
                 [textContentName]: data
             }).then();
@@ -59,4 +61,3 @@ function onError(error) {
 
 const getting = browser.storage.local.get();
 getting.then(onGotLocalStorage, onError);
-
